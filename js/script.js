@@ -22,7 +22,7 @@ $('#title').change(function(){
 
 //create text box for job role
 function showText(){
-	var $textArea = $('<input>').attr({type: 'text', id: 'other-title', placeholder: 'Your Title', autofocus: 'true'})
+	var $textArea = $('<input>').attr({type: 'text', id: 'other-title', placeholder: 'Your Title', autofocus: 'true'});
 	$('#title').after($textArea);
 }
 
@@ -62,12 +62,12 @@ $('.activities input').click(function(){
 		total = length * 100 + 100;
 	}
 	else{
-		total = length * 100
+		total = length * 100;
 	}
 	//display total
 	if(total > 0){
 		var p = $('.activities p');
-		if(p != null){
+		if(p !== null){
 			p.remove();
 		}
 		$('.activities').append('<p>Total: '+ total + '</p>');
