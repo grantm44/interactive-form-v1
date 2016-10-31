@@ -4,6 +4,8 @@ var total = 0;
 $(document).ready(function(){
 
 	$('input').first().focus();
+	$('#payment').val('credit card');
+	$('div p').hide();
 });
 
 //when user selects a job role check if it's other
@@ -52,10 +54,9 @@ $(design).change(function(){
 
 //calculate and display total cost of registered activities
 $('.activities input').click(function(){
-	var val = $(this).attr("name");
 	var length = $('.activities input:checked').length; //number of checkboxes checked
 	var $check = $('.activities input[name=all]:checked');//variable if main conference is checked
-	
+
 	//calculate total
 	if($check.length >= 1){
 		total = length * 100 + 100;
@@ -67,13 +68,62 @@ $('.activities input').click(function(){
 	if(total > 0){
 		var p = $('.activities p');
 		if(p != null){
-			p.empty();
+			p.remove();
 		}
 		$('.activities').append('<p>Total: '+ total + '</p>');
 	}
 	else{
-		$('.activities p').empty();
+		$('.activities p').remove();
 	}
 	
+	timeSlot(); 
 });
 
+//disable activities option for conflicting time slots
+function timeSlot(){
+	var jsframeworks = $('.activities input[name=js-frameworks]:checked').length > 0;
+	var jslibs = $('.activities input[name=js-libs]:checked').length > 0;
+	var express = $('.activities input[name=express]:checked').length > 0;
+	var node =$('.activities input[name=node]:checked').length > 0;
+	if(jsframeworks){
+		$('.activities input[name=express').attr('disabled', true);
+	}
+	else{
+		$('.activities input[name=express').removeAttr('disabled');
+	}
+	if(jslibs){
+		$('.activities input[name=node').attr('disabled', true);
+	}
+	else{
+		$('.activities input[name=node').removeAttr('disabled');
+	}
+	if(express){
+		$('.activities input[name=js-frameworks').attr('disabled', true);
+	}
+	else{
+		$('.activities input[name=js-frameworks').removeAttr('disabled');
+	}
+	if(node){
+		$('.activities input[name=js-libs').attr('disabled', true);
+	}
+	else{
+		$('.activities input[name=js-libs').removeAttr('disabled');
+	}
+}
+
+$('#payment').change(function(){
+	var method = $(this).val();
+	if(method === 'credit card'){
+		$('div p').hide();
+	}
+	else if(method === 'paypal'){
+		$('div p:first').show();
+		$('#credit-card').hide();
+		$('div p:last').hide();
+	}
+	else if(method === 'bitcoin'){
+		$('div p:first').hide();
+		$('#credit-card').hide();
+		$('div p:last').show();
+	}
+});
