@@ -113,6 +113,19 @@ button:hover {
 	background: #184c62;
 }
 
+.error{
+	display:none;
+}
+
+.error_show{
+	color:red;
+	margin-bottom: .5em;
+}
+span.error_show{
+	color:red;
+	padding-bottom: 1.125em;
+	display:block;
+}
 /* ================================= 
   Page Styles
 ==================================== */
