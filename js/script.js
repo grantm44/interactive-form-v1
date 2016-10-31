@@ -1,3 +1,5 @@
+var total = 0;
+
 //select first text field when page loads
 $(document).ready(function(){
 
@@ -47,3 +49,31 @@ $(design).change(function(){
 		
 	}
 });
+
+//calculate and display total cost of registered activities
+$('.activities input').click(function(){
+	var val = $(this).attr("name");
+	var length = $('.activities input:checked').length;
+	var $check = $('.activities input[name=all]:checked');
+	
+	
+	if($check.length >= 1){
+		total = length * 100 + 100;
+	}
+	else{
+		total = length * 100
+	}
+	
+	if(total > 0){
+		var p = $('.activities p');
+		if(p != null){
+			p.empty();
+		}
+		$('.activities').append('<p>Total: '+ total + '</p>');
+	}
+	else{
+		$('.activities p').empty();
+	}
+	
+});
+
