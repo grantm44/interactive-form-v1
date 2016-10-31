@@ -53,17 +53,17 @@ $(design).change(function(){
 //calculate and display total cost of registered activities
 $('.activities input').click(function(){
 	var val = $(this).attr("name");
-	var length = $('.activities input:checked').length;
-	var $check = $('.activities input[name=all]:checked');
+	var length = $('.activities input:checked').length; //number of checkboxes checked
+	var $check = $('.activities input[name=all]:checked');//variable if main conference is checked
 	
-	
+	//calculate total
 	if($check.length >= 1){
 		total = length * 100 + 100;
 	}
 	else{
 		total = length * 100
 	}
-	
+	//display total
 	if(total > 0){
 		var p = $('.activities p');
 		if(p != null){
