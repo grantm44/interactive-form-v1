@@ -131,7 +131,10 @@ $('#payment').change(function(){
 
 //check for all valid input when form is submitted
 $('button:submit').click(function(){
-	
+	checkName();
+	checkEmail();
+	registerCheck();
+	checkCreditCard();
 	if(!checkName() || !checkEmail() || !registerCheck() || !checkCreditCard()){
 		event.preventDefault();
 	}
