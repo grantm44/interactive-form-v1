@@ -6,6 +6,7 @@ $(document).ready(function(){
 	$('input').first().focus();
 	$('#payment').val('credit card');
 	$('div p').hide();
+	$('#other-title').hide();
 });
 
 //when user selects a job role check if it's other
@@ -13,18 +14,12 @@ $('#title').change(function(){
 	
 	if($(this).val() === 'other'){
 		console.log($(this).val());
-		showText();
+		$('#other-title').show();
 	}
 	else{
-		$('#other-title').remove();
+		$('#other-title').hide();
 	}
 });
-
-//create text box for job role
-function showText(){
-	var $textArea = $('<input>').attr({type: 'text', id: 'other-title', placeholder: 'Your Title', autofocus: 'true'});
-	$('#title').after($textArea);
-}
 
 //show colors available for t-shirt design theme that is selected
 $(design).change(function(){
@@ -126,6 +121,10 @@ $('#payment').change(function(){
 		$('div p:first').hide();
 		$('#credit-card').hide();
 		$('div p:last').show();
+	}
+	else{
+		$('div p').hide();
+		$('#credit-card').show();
 	}
 });
 
